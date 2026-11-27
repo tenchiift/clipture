@@ -1,0 +1,186 @@
+@import "tailwindcss";
+
+/* Soft Neubrutalism: muted paper surfaces, charcoal borders, restrained accents */
+:root {
+  --nb-paper: #F5F3EE;
+  --nb-surface: #FCFBF8;
+  --nb-subtle: #EAE6DC;
+  --nb-border: #2C3038;
+  --nb-ink: #1E293B;
+  --nb-muted: #475569;
+  --nb-butter: #F3E8B8;
+  --nb-sage: #CBE4D3;
+  --nb-slate: #CBDDF0;
+  --nb-coral: #F4C7C3;
+}
+
+@layer base {
+  html,
+  body,
+  #root {
+    height: 100%;
+    margin: 0;
+  }
+
+  body {
+    background: var(--nb-paper);
+    color: var(--nb-ink);
+    font-family: "Space Grotesk", system-ui, sans-serif;
+  }
+
+  html.drawer-mode,
+  html.drawer-mode body,
+  html.drawer-mode #root {
+    background: transparent !important;
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+  }
+
+  button:not(:disabled),
+  a[href],
+  select:not(:disabled),
+  [role="button"]:not([aria-disabled="true"]) {
+    cursor: pointer;
+  }
+
+  button:disabled {
+    cursor: not-allowed;
+  }
+
+  :focus-visible {
+    outline: 3px solid var(--nb-ink);
+    outline-offset: 2px;
+  }
+}
+
+.nb-card {
+  border: 2px solid var(--nb-border);
+  border-radius: 0;
+  background: var(--nb-surface);
+}
+
+.nb-press {
+  border: 2px solid var(--nb-border);
+  border-radius: 0;
+  font-weight: 700;
+  transition: transform 110ms ease, box-shadow 110ms ease, background-color 110ms ease;
+}
+
+.nb-press:hover {
+  transform: translate(-1px, -1px);
+}
+
+.nb-press:active {
+  transform: translate(2px, 2px);
+  box-shadow: 0 0 0 var(--nb-border) !important;
+}
+
+.nb-button-primary {
+  background: var(--nb-ink);
+  color: var(--nb-surface);
+  box-shadow: 3px 3px 0 #64748B;
+}
+
+.nb-button-primary:hover {
+  box-shadow: 4px 4px 0 #64748B;
+}
+
+.nb-button-primary:active {
+  box-shadow: 0 0 0 #64748B !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nb-press {
+    transition: none;
+  }
+
+  .nb-press:hover,
+  .nb-press:active {
+    transform: none;
+  }
+}
+
+/* Flat Neubrutalist scrollbars */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--nb-paper);
+  border-left: 2px solid var(--nb-border);
+}
+
+::-webkit-scrollbar-thumb {
+  background: #64748B;
+  border-radius: 0;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--nb-border);
+}
+
+/* Electron macOS draggable titlebar region */
+.titlebar-drag {
+  -webkit-app-region: drag;
+}
+
+.titlebar-no-drag {
+  -webkit-app-region: no-drag;
+}
+
+/* Quick Cursor Popup morph-like appear/dismiss (beui.dev FeedbackWidget curves, GPU-composited) */
+@keyframes drawerMorphIn {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 8px, 0) scale(0.95);
+  }
+  55% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+}
+
+@keyframes drawerMorphOut {
+  0% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translate3d(0, -6px, 0) scale(0.96);
+  }
+}
+
+.drawer-morph-in {
+  animation: drawerMorphIn 300ms cubic-bezier(0.34, 1.25, 0.64, 1) both;
+  will-change: transform, opacity;
+}
+
+.drawer-morph-out {
+  animation: drawerMorphOut 180ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  will-change: transform, opacity;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .drawer-morph-in {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+
+  .drawer-morph-out {
+    animation: none;
+    opacity: 0;
+    transform: none;
+  }
+}

@@ -1,0 +1,277 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Clipture — Local-First Clipboard Manager</title>
+    <meta
+      name="description"
+      content="Your clipboard remembers everything. Your secrets never leave your Mac. Fast, searchable, 100% local-first clipboard manager with built-in Privacy Guard."
+    />
+    <link rel="icon" type="image/png" href="icon.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container">
+        <nav class="navbar" aria-label="Primary navigation">
+          <a href="#" class="brand">
+            <img src="icon.png" alt="Clipture icon" />
+            <span>CLIPTURE</span>
+          </a>
+
+          <div class="nav-links">
+            <a href="#features">Features</a>
+            <a href="#preview">Preview</a>
+            <a href="#shortcuts">Shortcuts</a>
+          </div>
+
+          <div class="nav-meta">
+            <span class="nb-pill">v0.2.0</span>
+            <span class="nb-pill">macOS · Windows</span>
+            <a
+              class="nb-press nb-btn-light nav-cta"
+              href="https://github.com/tenchiift/clipture/releases/latest"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Get App
+            </a>
+          </div>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="container hero-grid">
+          <div>
+            <div class="hero-eyebrow">100% Local-First · Privacy Guard</div>
+            <h1 class="hero-title">Your clipboard remembers everything.</h1>
+            <p class="hero-sub">
+              The lightweight, privacy-focused clipboard history manager for macOS and Windows.
+              No cloud sync, no telemetry—your secrets never leave your device.
+            </p>
+            <div class="hero-actions">
+              <a
+                id="download-mac-btn"
+                data-platform="mac"
+                class="nb-press nb-btn-dark hero-btn"
+                href="https://github.com/tenchiift/clipture/releases/latest"
+              >
+                Download for Mac (.dmg)
+              </a>
+              <a
+                id="download-win-btn"
+                data-platform="windows"
+                class="nb-press nb-btn-dark hero-btn"
+                href="https://github.com/tenchiift/clipture/releases/latest"
+              >
+                Download for Windows (.exe)
+              </a>
+              <a
+                class="nb-press nb-btn-light hero-btn"
+                href="https://github.com/tenchiift/clipture"
+                target="_blank"
+                rel="noreferrer"
+              >
+                GitHub
+              </a>
+            </div>
+            <p class="hero-note">Free &amp; open-source under the MIT License.</p>
+          </div>
+
+          <div class="playground-wrap">
+            <div class="playground-stack-back">
+              <div class="app-window" aria-label="Interactive Clipture playground">
+                <div class="window-titlebar">
+                  <div class="traffic-lights" aria-hidden="true">
+                    <span class="dot dot-red"></span>
+                    <span class="dot dot-yellow"></span>
+                    <span class="dot dot-green"></span>
+                  </div>
+                  <span class="window-title">CLIPTURE</span>
+                  <span class="window-spacer"></span>
+                </div>
+
+                <div class="window-body">
+                  <div class="search-box">
+                    <span aria-hidden="true">&#8981;</span>
+                    <input
+                      id="playground-search"
+                      type="text"
+                      placeholder="Search clips, filenames, or tags..."
+                      aria-label="Search sample clips"
+                    />
+                    <span class="kbd-badge">⌘K</span>
+                  </div>
+
+                  <div class="filter-tabs" role="tablist" aria-label="Clip categories">
+                    <button type="button" class="tab-btn active" data-category="ALL">ALL</button>
+                    <button type="button" class="tab-btn" data-category="IMAGE">IMAGE</button>
+                    <button type="button" class="tab-btn" data-category="CODE">CODE</button>
+                    <button type="button" class="tab-btn" data-category="URL">URL</button>
+                    <button type="button" class="tab-btn" data-category="SECRET">SECRET</button>
+                  </div>
+
+                  <div id="clip-list" class="clip-list"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="features" class="section">
+        <div class="container">
+          <div class="section-header">
+            <h2 class="section-title">Built for speed and secrecy.</h2>
+            <p class="section-desc">
+              Every clip is classified on-device into Code, Error Log, URL, Secret, Image, File, or Note.
+            </p>
+          </div>
+
+          <div class="features-grid">
+            <article class="feature-card">
+              <span class="feature-tag tag-butter">Auto-Capture</span>
+              <h3>Zero-effort background history</h3>
+              <p>
+                Anything you copy with ⌘C / Ctrl+C—text, code snippets, screenshots, or Finder files—is
+                saved locally and ready whenever you summon Clipture.
+              </p>
+            </article>
+
+            <article class="feature-card">
+              <span class="feature-tag tag-coral">Privacy Guard</span>
+              <h3>Automatic secret masking</h3>
+              <p>
+                API keys, tokens, and high-entropy credentials are detected locally and masked by
+                default. Click Reveal only when you need to inspect them.
+              </p>
+            </article>
+
+            <article class="feature-card">
+              <span class="feature-tag tag-slate">Rich Media</span>
+              <h3>Screenshots &amp; Finder files</h3>
+              <p>
+                Paste or drag-and-drop images and files into the window, inspect dimensions and file
+                sizes, reveal in Finder, or copy straight back to your clipboard.
+              </p>
+            </article>
+
+            <article class="feature-card">
+              <span class="feature-tag tag-sage">Tauri + Rust</span>
+              <h3>Native 3.9 MB footprint &amp; menu bar</h3>
+              <p>
+                Built with Tauri &amp; Rust for a tiny ~3.9 MB installer, menu bar tray, launch-at-login,
+                shortcut priority toggle, and instant ⌘⇧V window toggling.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="preview" class="section">
+        <div class="container">
+          <div class="section-header">
+            <h2 class="section-title">Inside the app.</h2>
+            <p class="section-desc">
+              A tactile split-pane workspace designed with crisp borders, fast filtering, and zero clutter.
+            </p>
+          </div>
+          <div class="screenshot-frame">
+            <img src="screenshot.png" alt="Clipture desktop application screenshot" />
+          </div>
+        </div>
+      </section>
+
+      <section id="shortcuts" class="section">
+        <div class="container">
+          <div class="section-header">
+            <h2 class="section-title">Keyboard shortcuts.</h2>
+            <p class="section-desc">Navigate, search, and paste without touching your mouse.</p>
+          </div>
+
+          <table class="shortcuts-table">
+            <thead>
+              <tr>
+                <th>Shortcut</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span class="keycap">↑</span> / <span class="keycap">↓</span></td>
+                <td>Move through clip history</td>
+              </tr>
+              <tr>
+                <td><span class="keycap">↵</span> / <span class="keycap">⌘C</span></td>
+                <td>Copy selected clip to clipboard</td>
+              </tr>
+              <tr>
+                <td><span class="keycap">⌘X</span> / <span class="keycap">Win+X</span></td>
+                <td>Delete selected clip</td>
+              </tr>
+              <tr>
+                <td><span class="keycap">⌘K</span> / <span class="keycap">Win+K</span></td>
+                <td>Focus search bar</td>
+              </tr>
+              <tr>
+                <td><span class="keycap">⌘E</span> / <span class="keycap">Win+E</span></td>
+                <td>Move clip to another clip type</td>
+              </tr>
+              <tr>
+                <td><span class="keycap">⌘T</span> / <span class="keycap">Win+T</span></td>
+                <td>Create custom clip type</td>
+              </tr>
+              <tr>
+                <td><span class="keycap">⌘V</span> / Drop</td>
+                <td>Import text, images, or files</td>
+              </tr>
+              <tr>
+                <td><span class="keycap">⌘⇧V</span></td>
+                <td>Toggle desktop window</td>
+              </tr>
+              <tr>
+                <td><span class="keycap">Esc</span></td>
+                <td>Cancel mode or clear search query</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <div class="footer-meta">Clipture · 100% Local-First · MIT License</div>
+        <div class="footer-links">
+          <a
+            class="nb-press nb-btn-light nav-cta"
+            href="https://github.com/tenchiift/clipture/releases/latest"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Releases
+          </a>
+          <a
+            class="nb-press nb-btn-dark nav-cta"
+            href="https://github.com/tenchiift/clipture"
+            target="_blank"
+            rel="noreferrer"
+          >
+            GitHub
+          </a>
+        </div>
+      </div>
+    </footer>
+
+    <script src="app.js"></script>
+  </body>
+</html>

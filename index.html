@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Clipture: Smart Clipboard Memory</title>
+    <link rel="icon" type="image/png" href="/icon.png" />
+    <script>
+      if (window.location.search.indexOf('view=drawer') !== -1) {
+        document.documentElement.classList.add('drawer-mode');
+      }
+    </script>
+    <style>
+      html.drawer-mode,
+      html.drawer-mode body,
+      html.drawer-mode #root {
+        background: transparent !important;
+      }
+    </style>
+  </head>
+  <body class="antialiased selection:bg-[#F3E8B8] selection:text-[#1E293B]">
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
